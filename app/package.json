@@ -7,9 +7,14 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@types/three": "^0.134.0",
+    "antd": "^5.15.2",
     "core-js": "^3.8.3",
+    "three": "^0.134.0",
+    "troisjs": "^0.3.4",
     "vue": "^3.2.13",
-    "vue-class-component": "^8.0.0-0"
+    "vue-class-component": "^8.0.0-0",
+    "webpack": "^5.90.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~5.0.0",

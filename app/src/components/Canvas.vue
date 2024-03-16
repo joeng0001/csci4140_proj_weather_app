@@ -1,29 +1,27 @@
 <template>
-    <Renderer ref="renderer" resize="window" orbit-ctrl>
-        <Camera :position="{ z: 10 }" />
-        <Scene>
-            <AmbientLight :position="{ y: 50, z: 50 }" />
-            <Box ref="box" :rotation="{ y: Math.PI / 4, z: Math.PI / 4 }">
-                <LambertMaterial />
-            </Box>
-        </Scene>
-    </Renderer>
+    <TresCanvas clear-color="#82DBC5" shadows alpha window-size>
+        <OrbitControls />
+        <TresPerspectiveCamera :position="[1, 2, 5]" :fov="45" :aspect="1" :near="0.1" :far="1000" />
+        <TresMesh ref="boxRef" :scale="1" cast-shadow>
+            <TresBoxGeometry :args="[1, 1, 1]" />
+            <TresMeshNormalMaterial />
+        </TresMesh>
+    </TresCanvas>
 </template>
 
-<script lang="ts">
-import { ref, onMounted, defineComponent } from 'vue'
-export default defineComponent({
-    setup() {
-        const renderer = ref(null)
-        const box = ref(null)
+<script setup lang="ts">
+import { shallowRef } from 'vue';
+import { TresCanvas, useRenderLoop } from '@tresjs/core';
+import { OrbitControls } from '@tresjs/cientos';
 
-        onMounted(() => {
-            renderer?.value?.onBeforeRender(() => {
-                box.value.mesh.rotation.x += 0.01;
-            });
-        })
-        return { renderer, box }
+const boxRef = shallowRef(null);
+
+const { onLoop } = useRenderLoop();
+
+onLoop(({ delta, elapsed }) => {
+    if (boxRef.value) {
+        boxRef.value.rotation.y += delta;
+        boxRef.value.rotation.z = elapsed * 0.2;
     }
-})
-
+});
 </script>

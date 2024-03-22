@@ -1,11 +1,12 @@
 <template>
     <TresCanvas clear-color="#82DBC5" shadows alpha window-size>
         <OrbitControls />
-        <TresPerspectiveCamera :position="[1, 2, 5]" :fov="45" :aspect="1" :near="0.1" :far="1000" />
+        <TresPerspectiveCamera ref="cameraRef" :position="[1, 2, 5]" :fov="45" :aspect="1" :near="0.1" :far="1000" />
         <TresMesh ref="boxRef" :scale="1" cast-shadow>
             <TresBoxGeometry :args="[1, 1, 1]" />
             <TresMeshNormalMaterial />
         </TresMesh>
+        <Humidity />
     </TresCanvas>
 </template>
 
@@ -13,6 +14,7 @@
 import { shallowRef } from 'vue';
 import { TresCanvas, useRenderLoop } from '@tresjs/core';
 import { OrbitControls } from '@tresjs/cientos';
+import Humidity from '@/components/Canvas/Humidity.vue'
 
 const boxRef = shallowRef(null);
 

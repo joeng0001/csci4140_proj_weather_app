@@ -5,8 +5,8 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import Canvas from "@/components/Canvas.vue"
-import Panel from "@/components/Panel.vue"
+import Canvas from "@/components/Canvas/Index.vue"
+import Panel from "@/components/Panel/Index.vue"
 
 
 @Options({

@@ -1,19 +1,20 @@
 <template>
-  <Canvas></Canvas>
-  <Panel></Panel>
+  <!-- <Canvas></Canvas> -->
+  <!-- <Panel></Panel> -->
+  <div>test</div>
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import Canvas from "@/components/Canvas/Index.vue"
-import Panel from "@/components/Panel/Index.vue"
+import Panel from "@/components/Canvas/Index.vue"
 
 
-@Options({
-  components: {
-    Canvas, Panel
-  }
-})
+// @Options({
+//   components: {
+//     Canvas, Panel
+//   }
+// })
 export default class App extends Vue { }
 </script>
 

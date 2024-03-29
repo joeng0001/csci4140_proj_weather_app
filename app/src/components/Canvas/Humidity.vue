@@ -1,5 +1,6 @@
-<template></template>
-<script lang="ts">
-import { Vue } from 'vue-class-component';
-export default class App extends Vue { }
+<template>
+    <div>humidity</div>
+</template>
+<script setup lang="ts">
+
 </script>

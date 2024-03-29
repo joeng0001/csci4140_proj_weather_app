@@ -6,19 +6,24 @@
             <TresBoxGeometry :args="[1, 1, 1]" />
             <TresMeshNormalMaterial />
         </TresMesh>
-        <Humidity />
+        <!-- <Humidity /> -->
+        <!-- <RouterView/> -->
     </TresCanvas>
 </template>
 
 <script setup lang="ts">
-import { shallowRef } from 'vue';
+import { ref } from 'vue';
 import { TresCanvas, useRenderLoop } from '@tresjs/core';
 import { OrbitControls } from '@tresjs/cientos';
 import Humidity from '@/components/Canvas/Humidity.vue'
+import { type ppl,type ppls } from '@/types/Canvas'
+import * as THREE from "three"
+import { RouterView } from 'vue-router'
 
-const boxRef = shallowRef(null);
-
+const boxRef = ref<THREE.Object3D | null>(null);
 const { onLoop } = useRenderLoop();
+let x: ppl = { ppl: 1 }
+let s: ppls = [{ ppl: 1 }]
 
 onLoop(({ delta, elapsed }) => {
     if (boxRef.value) {

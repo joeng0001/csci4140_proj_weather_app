@@ -6,9 +6,10 @@
             <TresBoxGeometry :args="[1, 1, 1]" />
             <TresMeshNormalMaterial />
         </TresMesh>
-        <!-- <Humidity /> -->
+        <!-- <Humidity :v-model.value="1"/> -->
         <!-- <RouterView/> -->
     </TresCanvas>
+    <Humidity :v-model.value="1"/>
 </template>
 
 <script setup lang="ts">

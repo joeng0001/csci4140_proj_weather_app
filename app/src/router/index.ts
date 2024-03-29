@@ -4,8 +4,12 @@ const router=createRouter({
     history:createWebHistory(),
     routes:[
         {
-            path:'/humidity',
-            component: Humidity
+            path:'/humidity/:level?', //optional param
+            component: Humidity,
+            //props:true // props from params => defineProps([])
+            props(route){
+                return {...route.params}
+            }
         },
     ]
 })

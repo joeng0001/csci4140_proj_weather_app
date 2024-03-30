@@ -4,17 +4,22 @@
 <script setup lang="ts">
 import { useHumidityStore } from '@/store/humidity'
 import { storeToRefs } from 'pinia'
+// import { inject } from 'vue';
+// let test=inject('test','default value')
+
+//$attrs // pass from parent but not accept from childs props
+// const { a } = defineProps(['a'])
+//const name=defineModel('name') //v-model:name= model in parent
 const humidityStore = useHumidityStore()
-console.log(humidityStore.level)
 humidityStore.level += 1
-console.log(humidityStore.level)
 humidityStore.$patch({ //at once
     level: 1,
-    t: true
 })
-console.log(humidityStore)
 humidityStore.addLevel(3)
-console.log(humidityStore.level)
-
-const { level } = storeToRefs(humidityStore)
+humidityStore.$subscribe((mutate, state) => {
+    console.log("state")
+})
+// const { level } = storeToRefs(humidityStore)
+// defineExpose({ a }) //enable parent access by ref || $refs
+// $parent => child access parent
 </script>

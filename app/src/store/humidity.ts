@@ -10,5 +10,10 @@ export const useHumidityStore = defineStore('humidity',{
         return {
             level:1
         }
+    },
+    getters:{
+        getlevel(state):number{
+            return state.level
+        }
     }
 })

@@ -6,14 +6,14 @@
             <TresBoxGeometry :args="[1, 1, 1]" />
             <TresMeshNormalMaterial />
         </TresMesh>
-        <!-- <Humidity :v-model.value="1"/> -->
+        <!-- <Humidity :v-model.value="a" /> -->
         <!-- <RouterView/> -->
     </TresCanvas>
     <Humidity :v-model.value="1"/>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref,provide } from 'vue';
 import { TresCanvas, useRenderLoop } from '@tresjs/core';
 import { OrbitControls } from '@tresjs/cientos';
 import Humidity from '@/components/Canvas/Humidity.vue'
@@ -32,4 +32,6 @@ onLoop(({ delta, elapsed }) => {
         boxRef.value.rotation.z = elapsed * 0.2;
     }
 });
+
+//provide('test',1) //pass to all descendent
 </script>

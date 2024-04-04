@@ -6,6 +6,7 @@
             <TresBoxGeometry :args="[1, 1, 1]" />
             <TresMeshNormalMaterial />
         </TresMesh>
+        <!-- <template v-slot:name="params_from_slot"></template> -->
         <!-- <Humidity :v-model.value="a" /> -->
         <!-- <RouterView/> -->
     </TresCanvas>
@@ -20,6 +21,9 @@ import Humidity from '@/components/Canvas/Humidity.vue'
 import { type ppl,type ppls } from '@/types/Canvas'
 import * as THREE from "three"
 import { RouterView } from 'vue-router'
+
+
+
 
 const boxRef = ref<THREE.Object3D | null>(null);
 const { onLoop } = useRenderLoop();

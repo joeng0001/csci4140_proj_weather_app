@@ -10,8 +10,9 @@ import { ref, onMounted } from 'vue'
 import { Options, Vue } from 'vue-class-component';
 import Canvas from "@/components/Canvas/index.vue"
 import Panel from "@/components/Panel/index.vue"
-
-
+// import { get_humidity } from "@/helper/http"
+// const res=await get_humidity()
+// console.log(res.data)
 </script>
 
 <style>

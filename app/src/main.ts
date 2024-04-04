@@ -4,4 +4,8 @@ import Tres from '@tresjs/core'
 import router from '@/router'
 import {createPinia} from 'pinia'
 import emitter from "@/helper/emitter";
-createApp(App).use(Tres).use(router).use(createPinia()).mount("#app");
+const app=createApp(App)
+app.use(Tres).use(router).use(createPinia())
+// app.config.globalProperties.url=""
+app.mount("#app");
+

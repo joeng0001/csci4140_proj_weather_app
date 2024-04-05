@@ -1,9 +1,13 @@
 <template>
 
-  <div>
-    <Canvas></Canvas>
-    <Panel></Panel>
-  </div>
+
+  <Suspense>
+    <div>
+      <Canvas></Canvas>
+      <Panel></Panel>
+    </div>
+  </Suspense>
+
 
 </template>
 

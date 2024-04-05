@@ -6,17 +6,24 @@ const Http = axios.create({
   },
   timeout: 1000000, 
 });
+
+async function get(path:string){
+  return Http.get(path).then(res=>{
+      return res.data
+    })
+}
+
 export async function get_humidity(){
-    return Http.get("/data/humidity")
+    return get("/data/humidity")
 }
 
 export async function get_rainfall(){
-    return Http.get("/data/rainfall")
+    return get("/data/rainfall")
 }
 
 export async function get_sun_time(){
-    return Http.get("/data/sun")
+    return get("/data/sun")
 }
 export async function get_uv_ray(){
-    return Http.get("/data/uvRay")
+    return get("/data/uvRay")
 }

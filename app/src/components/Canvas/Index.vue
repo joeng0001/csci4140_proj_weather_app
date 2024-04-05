@@ -17,7 +17,6 @@
         <!-- <Humidity :v-model.value="a" /> -->
         <!-- <RouterView/> -->
     </TresCanvas>
-    <input v-show="false" @keydown="keyListen" />
     <!-- <Humidity :v-model.value="1"/> -->
 </template>
 
@@ -31,7 +30,6 @@ import * as THREE from "three"
 import { RouterView } from 'vue-router'
 import map from "@/assets/HKMap.png"
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
-import type { toValue } from 'vue';
 import useKeyboardEventListener from '@/hooks/Canvas/useKeyEvent'
 
 const manager = new THREE.LoadingManager();
@@ -61,7 +59,6 @@ onLoop(({ delta, elapsed }) => {
             cameraRef.value.lookAt( modelRef.value.position)
         }
     }
-
 });
 
 //provide('test',1) //pass to all descendent

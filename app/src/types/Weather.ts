@@ -6,7 +6,7 @@ export interface HumidityMappedData {
     'completeness': string
 }
 export interface HumidityData {
-    "﻿年/Year"?: string, 
+    "年/Year"?: string, 
     '月/Month'?:string , 
     '日/Day'?:string , 
     '數值/Value'?: string, 
@@ -27,7 +27,7 @@ export interface RainfallMappedData {
     'completeness': string
 }
 export interface RainfallData {
-    "﻿年/Year"?: string, 
+    "年/Year"?: string, 
     '月/Month'?:string , 
     '日/Day'?:string , 
     '數值/Value'?: string, 
@@ -49,7 +49,7 @@ export interface SunTimeMappedData{
     'set': String, 
 }
 export interface SunTimeData{
-    "﻿YYYY-MM-DD"?:String, 
+    "YYYY-MM-DD"?:String, 
     'RISE'?: String, 
     'TRAN.'?: String, 
     'SET'?: String
@@ -66,7 +66,7 @@ export interface UVRayMappedData{
     'completeness': String
 }
 export interface UVRayData{
-    "﻿Year"?:String, 
+    "Year"?:String, 
     'Value'?:String, 
     'Month'?: String, 
     'Day.'?: String, 

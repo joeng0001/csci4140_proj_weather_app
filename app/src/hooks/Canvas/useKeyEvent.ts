@@ -19,8 +19,8 @@ export default function(){
     const onKeyUp = (e:KeyboardEvent) => {
         key[e.key]=false
     };
-    const rotationSpeed = 0.005; 
-    const moveSpeed = 0.005; 
+    const rotationSpeed = 0.01; 
+    const moveSpeed = 0.01; 
     const rotation = new THREE.Quaternion();
     const direction = new THREE.Vector3(0, 0, -1);
 

@@ -1,16 +1,16 @@
 <template>
-    <div>{{ WeatherStore.getSunTime }}</div>
+    <primitive :object="model" :scale="0.3" :position="[3, 3, 0]" />
 </template>
 
 <script setup lang="ts">
-import { useWeatherStore } from '@/store/weather'
-import { get_rainfall } from "@/helper/http"
+import { useLoader } from '@tresjs/core';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
+const Url = new URL('@/assets/cloud.glb', import.meta.url)
+const { scene: model } = await useLoader(GLTFLoader, Url.href)
 
-const WeatherStore = useWeatherStore()
 
-const Rainfall = await get_rainfall()
-WeatherStore.setRainfall(Rainfall)
 
-console.log(WeatherStore.getRainfall)
+
+
 
 </script>

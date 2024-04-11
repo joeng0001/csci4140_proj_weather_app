@@ -1,16 +1,11 @@
 <template>
-    <div>{{ WeatherStore.getSunTime }}</div>
+    <primitive :object="model" :scale="1" :position="[0, 4, 0]" />
 </template>
 
 <script setup lang="ts">
-import { useWeatherStore } from '@/store/weather'
-import { get_sun_time } from "@/helper/http"
-
-const WeatherStore = useWeatherStore()
-
-const SunTime = await get_sun_time()
-WeatherStore.setSunTime(SunTime)
-
-console.log(WeatherStore.getSunTime)
+import { useLoader } from '@tresjs/core';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
+const Url = new URL('@/assets/sun.glb', import.meta.url)
+const { scene: model } = await useLoader(GLTFLoader, Url.href)
 
 </script>

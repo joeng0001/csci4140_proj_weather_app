@@ -1,6 +1,7 @@
 import {defineStore} from 'pinia'
-import { type HumidityData,type HumidityObj,type Humidity,type HumidityMappedData } from '@/types/Weather'
+import { type HumidityData,type HumidityObj,type Humidity,type HumidityMappedData} from '@/types/Weather'
 import { type RainfallData,type RainfallObj,type Rainfall,type RainfallMappedData } from '@/types/Weather'
+import { type Wind, type WindObj, type WindData,type WindMappedData } from '@/types/Weather'
 import { type SunTime,type SunTimeData,type SunTimeMappedData } from '@/types/Weather'
 import { type UVRay,type UVRayData,type UVRayMappedData } from '@/types/Weather'
 
@@ -8,8 +9,8 @@ export const useWeatherStore = defineStore('weather',{
     actions:{
         setHumidity(arr:Humidity){
             arr.map((placeData:HumidityObj)=>{
-                placeData.data.map((data:HumidityData)=>{ 
-                    return humidityAndRainfallMap(data)
+                placeData.data.map((obj:HumidityData)=>{ 
+                    return humidity_Rainfall_Wind_Map(obj)
                 })
                 return placeData
             })
@@ -18,11 +19,20 @@ export const useWeatherStore = defineStore('weather',{
         setRainfall(arr:Rainfall){
             arr.map((placeData:RainfallObj)=>{
                 placeData.data.map((obj:RainfallData)=>{ 
-                   return humidityAndRainfallMap(obj)
+                   return humidity_Rainfall_Wind_Map(obj)
                 })
                 return placeData
             })
             this.$state.Rainfall=<never>arr
+        },
+        setWind(arr:Wind){
+            arr.map((placeData:WindObj)=>{
+                placeData.data.map((obj:WindData)=>{ 
+                   return humidity_Rainfall_Wind_Map(obj)
+                })
+                return placeData
+            })
+            this.$state.Wind=<never>arr
         },
         setSunTime(arr:SunTime){
             arr.map((obj:SunTimeData)=>{
@@ -42,7 +52,8 @@ export const useWeatherStore = defineStore('weather',{
             Humidity:<Humidity>[],
             Rainfall:<Rainfall>[],
             SunTime:<SunTime>[],
-            UVRay:<UVRay>[]
+            UVRay:<UVRay>[],
+            Wind:<Wind>[],
         }
     },
     getters:{
@@ -58,22 +69,25 @@ export const useWeatherStore = defineStore('weather',{
         getUVRay(state):Array<Object>{
             return state.UVRay
         },
+        getWind(state):Array<Object>{
+            return state.Wind
+        },
     }
 })
 
 
 
-function humidityAndRainfallMap(obj:HumidityData|RainfallData){
-    delete Object.assign(obj, {['year']: obj["﻿年/Year"] })["﻿年/Year"];
+function humidity_Rainfall_Wind_Map(obj:HumidityData|RainfallData){
+    delete Object.assign(obj, {['year']: obj["年/Year"] })["年/Year"];
     delete Object.assign(obj, {['month']: obj["月/Month"] })["月/Month"];
     delete Object.assign(obj, {['day']: obj["日/Day"] })["日/Day"];
     delete Object.assign(obj, {['value']: obj["數值/Value"] })["數值/Value"];
     delete Object.assign(obj, {['completeness']: obj["數據完整性/data Completeness"] })["數據完整性/data Completeness"];
-    return <HumidityMappedData|RainfallMappedData>obj
+    return <HumidityMappedData|RainfallMappedData|WindMappedData>obj
 }
 
 function sunTimeMap(obj:any){
-    delete Object.assign(obj, {['date']: obj["﻿YYYY-MM-DD"] })["﻿YYYY-MM-DD"];
+    delete Object.assign(obj, {['date']: obj["YYYY-MM-DD"] })["YYYY-MM-DD"];
     delete Object.assign(obj, {['rise']: obj["RISE"] })["RISE"];
     delete Object.assign(obj, {['tran']: obj["TRAN."] })["TRAN."];
     delete Object.assign(obj, {['set']: obj["SET"] })["SET"];
@@ -81,7 +95,7 @@ function sunTimeMap(obj:any){
 }
 
 function UVRayMap(obj:any){
-    delete Object.assign(obj, {['year']: obj["﻿Year"] })["﻿Year"];
+    delete Object.assign(obj, {['Year']: obj["Year"] })["Year"];
     delete Object.assign(obj, {['month']: obj["Month"] })["Month"];
     delete Object.assign(obj, {['day']: obj["Day"] })["Day"];
     delete Object.assign(obj, {['value']: obj["Value"] })["Value"];

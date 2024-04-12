@@ -6,6 +6,9 @@ import {createPinia} from 'pinia'
 import emitter from "@/helper/emitter";
 import { createVuestic } from "vuestic-ui";
 import "vuestic-ui/css";
+
+import '@mdi/font/css/materialdesignicons.css';
+import "material-design-icons-iconfont/dist/material-design-icons.min.css";
 const app=createApp(App)
 app.use(Tres).use(router).use(createPinia()).use(createVuestic())
 // app.config.globalProperties.url=""

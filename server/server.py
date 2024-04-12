@@ -58,5 +58,13 @@ def get_rainfall_data():
             item['年/Year'] = item.pop('﻿年/Year')
     return data
 
+@app.route('/data/wind')
+def get_wind_data():
+    data = read_folder('./data/wind')
+    for obj in data:
+        for item in obj['data']:
+            item['年/Year'] = item.pop('﻿年/Year')
+    return data
+
 if __name__ == '__main__':
     app.run(port=8088)

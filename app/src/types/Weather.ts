@@ -39,6 +39,25 @@ export interface RainfallObj {
 }
 export interface Rainfall extends Array<RainfallObj> {}
 
+export interface WindMappedData {
+    "year": string, 
+    'month':string , 
+    'day':string , 
+    'value': string, 
+    'completeness': string
+}
+export interface WindData {
+    "年/Year"?: string, 
+    '月/Month'?:string , 
+    '日/Day'?:string , 
+    '數值/Value'?: string, 
+    '數據完整性/data Completeness'?: string
+}
+export interface WindObj {
+    place:String,
+    data: WindData[]
+}
+export interface Wind extends Array<WindObj> {}
 
 
 

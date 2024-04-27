@@ -1,4 +1,4 @@
-const location= {
+const location: { [key: string]: any }= {
     "上水":[-0.9,-17.5],
     "大老山":[6.67,0.16],
     "大埔":[2.64,-11.25],

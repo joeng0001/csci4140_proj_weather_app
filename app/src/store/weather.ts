@@ -9,7 +9,7 @@ export const useWeatherStore = defineStore('weather',{
     actions:{
         setHumidity(arr:Humidity){
             arr.map((placeData:HumidityObj)=>{
-                placeData.data.map((obj:HumidityData)=>{ 
+                placeData.data.map((obj:any)=>{ 
                     return humidity_Rainfall_Wind_Map(obj)
                 })
                 return placeData
@@ -18,7 +18,7 @@ export const useWeatherStore = defineStore('weather',{
         },
         setRainfall(arr:Rainfall){
             arr.map((placeData:RainfallObj)=>{
-                placeData.data.map((obj:RainfallData)=>{ 
+                placeData.data.map((obj:any)=>{ 
                    return humidity_Rainfall_Wind_Map(obj)
                 })
                 return placeData
@@ -27,7 +27,7 @@ export const useWeatherStore = defineStore('weather',{
         },
         setWind(arr:Wind){
             arr.map((placeData:WindObj)=>{
-                placeData.data.map((obj:WindData)=>{ 
+                placeData.data.map((obj:any)=>{ 
                    return humidity_Rainfall_Wind_Map(obj)
                 })
                 return placeData
@@ -77,7 +77,7 @@ export const useWeatherStore = defineStore('weather',{
 
 
 
-function humidity_Rainfall_Wind_Map(obj:HumidityData|RainfallData){
+function humidity_Rainfall_Wind_Map(obj:HumidityData|RainfallData|WindData){
     delete Object.assign(obj, {['year']: obj["年/Year"] })["年/Year"];
     delete Object.assign(obj, {['month']: obj["月/Month"] })["月/Month"];
     delete Object.assign(obj, {['day']: obj["日/Day"] })["日/Day"];

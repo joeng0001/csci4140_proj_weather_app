@@ -13,8 +13,8 @@ export interface HumidityData {
     '數據完整性/data Completeness'?: string
 }
 export interface HumidityObj {
-    place:String,
-    data: HumidityData[]
+    place:string,
+    data: HumidityMappedData[]
 }
 export interface Humidity extends Array<HumidityObj> {}
 
@@ -34,8 +34,8 @@ export interface RainfallData {
     '數據完整性/data Completeness'?: string
 }
 export interface RainfallObj {
-    place:String,
-    data: RainfallData[]
+    place:string,
+    data: RainfallMappedData[]
 }
 export interface Rainfall extends Array<RainfallObj> {}
 
@@ -54,41 +54,41 @@ export interface WindData {
     '數據完整性/data Completeness'?: string
 }
 export interface WindObj {
-    place:String,
-    data: WindData[]
+    place:string,
+    data: WindMappedData[]
 }
 export interface Wind extends Array<WindObj> {}
 
 
 
 export interface SunTimeMappedData{
-    "date":String, 
-    'rise':String, 
-    'tran': String, 
-    'set': String, 
+    "date":string, 
+    'rise':string, 
+    'tran': string, 
+    'set': string, 
 }
 export interface SunTimeData{
-    "YYYY-MM-DD"?:String, 
-    'RISE'?: String, 
-    'TRAN.'?: String, 
-    'SET'?: String
+    "YYYY-MM-DD"?:string, 
+    'RISE'?: string, 
+    'TRAN.'?: string, 
+    'SET'?: string
 }
 export interface SunTime extends Array<SunTimeData> {}
 
 
 
 export interface UVRayMappedData{
-    "year":String, 
-    'value':String, 
-    'month': String, 
-    'day.': String, 
-    'completeness': String
+    "year":string, 
+    'value':string, 
+    'month': string, 
+    'day.': string, 
+    'completeness': string
 }
 export interface UVRayData{
-    "Year"?:String, 
-    'Value'?:String, 
-    'Month'?: String, 
-    'Day.'?: String, 
-    'Completeness'?: String
+    "Year"?:string, 
+    'Value'?:string, 
+    'Month'?: string, 
+    'Day.'?: string, 
+    'Completeness'?: string
 }
 export interface UVRay extends Array<UVRayData> {}

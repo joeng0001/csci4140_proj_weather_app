@@ -1,19 +1,32 @@
 <template>
   <Suspense>
-    <div>
+    <div v-if="!loading">
       <Canvas />
       <Panel />
     </div>
+    <template #fallback>
+      loading...
+    </template>
   </Suspense>
 </template>
 
 <script setup lang="ts">
-import { Suspense } from 'vue'
+import { Suspense, onMounted, ref } from 'vue'
 import Canvas from "@/components/Canvas/Index.vue"
 import Panel from "@/components/Panel/Index.vue"
 import useWeather from '@/hooks/Canvas/useWeather';
 
-// useWeather()
+const loading = ref(true);
+onMounted(async () => {
+  try {
+    await useWeather()
+  } catch (error) {
+    console.error(error);
+  } finally {
+    loading.value = false
+  }
+});
+
 
 </script>
 

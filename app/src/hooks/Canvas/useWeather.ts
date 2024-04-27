@@ -14,6 +14,6 @@ export default async function useWeather(){
     WeatherStore.setUVRay(weatherData[3])
     WeatherStore.setWind(weatherData[4])
 
-    
+    return true
 
 }

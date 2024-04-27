@@ -10,21 +10,37 @@
 import { useLoader } from '@tresjs/core';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
 import { useAnimations } from '@tresjs/cientos';
-import type { RGB_PVRTC_2BPPV1_Format } from 'three';
+import { location } from '@/constant';
 const Url = new URL('@/assets/turbine.glb', import.meta.url)
 const { scene: model, animations } = await useLoader(GLTFLoader, Url.href)
-const modelList = []
-for (let i = 0; i < 2; i++) {
+
+import { useWeatherStore } from '@/store/weather'
+import type { WindMappedData } from '@/types/Weather';
+const WeatherStore = useWeatherStore()
+console.log("inweather", WeatherStore.Wind)
+
+const date = { year: "2023", month: "1", day: "1" }
+let modelList = <Array<modelItf>>[]
+WeatherStore.Wind.forEach(wind => {
+    const coordinate = location[wind.place]
     const m = model.clone()
     const { actions } = useAnimations(animations, m)
     const currentAction = actions['rotation|Action']
     currentAction.play()
+    //get value by date
+    const target = wind.data.find(obj => obj.year == date.year && obj.month == date.month && obj.day == date.day)
+    currentAction.timeScale = target ? parseInt(target.value) : 0
     modelList.push({
         model: m,
-        position: [i, 2.3, i]
+        position: [coordinate[0], 2.3, coordinate[1]]
     })
+})
+
+
+
+interface modelItf {
+    "model": String,
+    "position": Array<any>
 }
-
-
 
 </script>

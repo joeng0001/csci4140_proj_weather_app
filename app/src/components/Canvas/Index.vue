@@ -4,7 +4,7 @@
         <OrbitControls />
         <TresAmbientLight />
         <TresAxesHelper :args="[100]" />
-        <TresMesh ref="boxRef" :scale="5" cast-shadow :rotation-x="-1 * Math.PI / 2">
+        <TresMesh ref="boxRef" :scale="5" cast-shadow :rotation-x="-1 * Math.PI / 2" @click="onClick">
             <TresPlaneGeometry :args="[10, 10, 1, 1]" />
             <TresMeshBasicMaterial :map="texture" />
         </TresMesh>
@@ -59,6 +59,7 @@ currentAction.play()
 
 const modelRef = ref<THREE.Object3D | null>(null);
 const cameraRef = ref<THREE.PerspectiveCamera | null>(null);
+const boxRef = ref<THREE.Object3D | null>(null);
 
 const { onLoop } = useRenderLoop();
 const { keyListener } = useKeyboardEventListener()
@@ -72,5 +73,11 @@ onLoop(({ delta, elapsed }) => {
     }
 });
 extend({ OrbitControls })
+
+
+// Function to handle the click event
+function onClick(event: MouseEvent) {
+    console.log("click", event.point)
+}
 //provide('test',1) //pass to all descendent
 </script>

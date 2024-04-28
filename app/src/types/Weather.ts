@@ -60,35 +60,18 @@ export interface WindObj {
 export interface Wind extends Array<WindObj> {}
 
 
-
-export interface SunTimeMappedData{
-    "date":string, 
-    'rise':string, 
-    'tran': string, 
-    'set': string, 
-}
-export interface SunTimeData{
-    "YYYY-MM-DD"?:string, 
-    'RISE'?: string, 
-    'TRAN.'?: string, 
-    'SET'?: string
-}
-export interface SunTime extends Array<SunTimeData> {}
-
-
-
 export interface UVRayMappedData{
     "year":string, 
     'value':string, 
     'month': string, 
-    'day.': string, 
+    'day': string, 
     'completeness': string
 }
 export interface UVRayData{
     "Year"?:string, 
     'Value'?:string, 
     'Month'?: string, 
-    'Day.'?: string, 
+    'Day'?: string, 
     'Completeness'?: string
 }
-export interface UVRay extends Array<UVRayData> {}
+export interface UVRay extends Array<UVRayMappedData> {}

@@ -20,21 +20,22 @@ export default function(){
     const onKeyUp = (e:KeyboardEvent) => {
         key[e.key]=false
     };
-    const rotationSpeed = 0.01; 
-    const moveSpeed = 0.01; 
+    const rotationSpeed = 0.05; 
+    const moveSpeed = 0.05; 
     const rotation = new THREE.Quaternion();
     const direction = new THREE.Vector3(0, 0, -1);
 
     function keyListener(model:any,animation:any){
-        if (key['w']){
-            direction.set(0, 0, -1);
+        if (key['w'] || key['s']){
+            direction.set(0, 0, key['w']?-1:1);
             direction.applyQuaternion(model.quaternion);
             direction.normalize();
             direction.multiplyScalar(moveSpeed);
             model.position.add(direction);
             emitter.emit('move',model.position)
             animation.play()
-        }else{
+        }
+        else{
             animation.stop()
         }
         if (key['a'] || key['d']){

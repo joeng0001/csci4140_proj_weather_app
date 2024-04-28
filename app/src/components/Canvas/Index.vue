@@ -13,17 +13,17 @@
             <TresPerspectiveCamera ref="cameraRef" :position="[0, 7, 2]" :fov="45" :aspect="1" :near="0.1" :far="300" />
         </TresGroup>
 
-        <Suspense>
+        <!-- <Suspense>
             <RainFall />
-        </Suspense>
+        </Suspense> -->
         <Suspense>
-            <SunTime />
+            <Sun />
         </Suspense>
-        <Humidity />
+        <!-- <Humidity />
         <UVRay />
         <Suspense>
             <Wind />
-        </Suspense>
+        </Suspense> -->
         <!-- <template v-slot:name="params_from_slot"></template> -->
         <!-- <Humidity :v-model.value="a" /> -->
 
@@ -42,7 +42,7 @@ import map from "@/assets/HKMap.png"
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
 import useKeyboardEventListener from '@/hooks/Canvas/useKeyEvent'
 import RainFall from "@/components/Canvas/Weather/RainFall.vue"
-import SunTime from "@/components/Canvas/Weather/SunTime.vue"
+import Sun from "@/components/Canvas/Weather/Sun.vue"
 import Humidity from "@/components/Canvas/Weather/Humidity.vue"
 import UVRay from "@/components/Canvas/Weather/UVRay.vue"
 import Wind from "@/components/Canvas/Weather/Wind.vue"

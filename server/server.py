@@ -28,13 +28,6 @@ def read_folder(folder_path):
     
     return json.loads(json.dumps(results))
 
-@app.route('/data/sun')
-def get_sun_data():
-    data = read_file('./data/sun/2023.csv')
-    for item in data:
-        item['YYYY-MM-DD'] = item.pop('﻿YYYY-MM-DD')
-    return data
-
 @app.route('/data/uvRay')
 def get_uv_ray_data():
     data = read_file('./data/UVRay/2023.csv')

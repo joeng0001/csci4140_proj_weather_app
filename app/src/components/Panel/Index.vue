@@ -37,7 +37,7 @@
 import useWeatherOptionCollapses from "@/hooks/Panel/Weather"
 const { WeatherOptionCollapses } = useWeatherOptionCollapses(["Humidity", "Rain Fall", "Sun Light", "UV Ray", "Wind"])
 
-import useDateTime from "@/hooks/Panel/DateTime"
+import useDateTime from "@/hooks/Panel/Date"
 const { DateTimeOptionObj } = useDateTime(new Date('2023-01-01'))
 
 import useLocationOptionCollapses from "@/hooks/Panel/Location"

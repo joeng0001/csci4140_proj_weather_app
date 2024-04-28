@@ -13,17 +13,14 @@
             <TresPerspectiveCamera ref="cameraRef" :position="[0, 7, 2]" :fov="45" :aspect="1" :near="0.1" :far="300" />
         </TresGroup>
 
-        <!-- <Suspense>
-            <RainFall />
-        </Suspense> -->
         <Suspense>
+            <!-- <RainFall />
             <Sun />
+            <Humidity />
+            <UVRay />
+            <Wind /> -->
+            <Cloud />
         </Suspense>
-        <!-- <Humidity />
-        <UVRay />
-        <Suspense>
-            <Wind />
-        </Suspense> -->
         <!-- <template v-slot:name="params_from_slot"></template> -->
         <!-- <Humidity :v-model.value="a" /> -->
 
@@ -46,6 +43,7 @@ import Sun from "@/components/Canvas/Weather/Sun.vue"
 import Humidity from "@/components/Canvas/Weather/Humidity.vue"
 import UVRay from "@/components/Canvas/Weather/UVRay.vue"
 import Wind from "@/components/Canvas/Weather/Wind.vue"
+import Cloud from "@/components/Canvas/Weather/Cloud.vue"
 
 const manager = new THREE.LoadingManager();
 const textureLoader = new THREE.TextureLoader(manager);

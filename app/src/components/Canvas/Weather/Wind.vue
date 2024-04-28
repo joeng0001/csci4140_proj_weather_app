@@ -15,7 +15,6 @@ const Url = new URL('@/assets/turbine.glb', import.meta.url)
 const { scene: model, animations } = await useLoader(GLTFLoader, Url.href)
 
 import { useWeatherStore } from '@/store/weather'
-import type { WindMappedData } from '@/types/Weather';
 const WeatherStore = useWeatherStore()
 console.log("inweather", WeatherStore.Wind)
 

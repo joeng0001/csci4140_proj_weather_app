@@ -60,6 +60,24 @@ export interface WindObj {
 export interface Wind extends Array<WindObj> {}
 
 
+
+export interface CloudMappedData {
+    "year": string, 
+    'month':string , 
+    'day':string , 
+    'value': string, 
+    'completeness': string
+}
+export interface CloudData {
+    "年/Year"?: string, 
+    '月/Month'?:string , 
+    '日/Day'?:string , 
+    '數值/Value'?: string, 
+    '數據完整性/data Completeness'?: string
+}
+
+export interface Cloud extends Array<CloudMappedData> {}
+
 export interface UVRayMappedData{
     "year":string, 
     'value':string, 

@@ -21,6 +21,9 @@ export async function get_rainfall(){
     return get("/data/rainfall")
 }
 
+export async function get_cloud(){
+    return get("/data/cloud")
+}
 
 export async function get_uv_ray(){
     return get("/data/uvRay")

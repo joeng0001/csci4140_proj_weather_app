@@ -2,9 +2,9 @@
 
     <TresCanvas clear-color="#FFFFFF" shadows alpha window-size ref="sceneRef">
         <OrbitControls />
-        <TresAmbientLight />
+        <!-- <TresAmbientLight /> -->
         <TresAxesHelper :args="[100]" />
-        <TresMesh ref="boxRef" :scale="5" cast-shadow :rotation-x="-1 * Math.PI / 2" @click="onClick">
+        <TresMesh ref="boxRef" :scale="5" :rotation-x="-1 * Math.PI / 2" @click="onClick">
             <TresPlaneGeometry :args="[10, 10, 1, 1]" />
             <TresMeshBasicMaterial :map="texture" />
         </TresMesh>
@@ -13,13 +13,8 @@
             <TresPerspectiveCamera ref="cameraRef" :position="[0, 7, 2]" :fov="45" :aspect="1" :near="0.1" :far="300" />
         </TresGroup>
 
-        <Suspense>
-            <!-- <RainFall />
-            <Sun />
-            <Humidity />
-            <UVRay />
-            <Wind /> -->
-            <Cloud />
+        <Suspense v-for="(comp, i) in components" :key="i">
+            <component :is="comp" />
         </Suspense>
         <!-- <template v-slot:name="params_from_slot"></template> -->
         <!-- <Humidity :v-model.value="a" /> -->
@@ -44,6 +39,16 @@ import Humidity from "@/components/Canvas/Weather/Humidity.vue"
 import UVRay from "@/components/Canvas/Weather/UVRay.vue"
 import Wind from "@/components/Canvas/Weather/Wind.vue"
 import Cloud from "@/components/Canvas/Weather/Cloud.vue"
+
+
+const components = [
+    RainFall,
+    Sun,
+    Humidity,
+    UVRay,
+    Wind,
+    Cloud
+]
 
 const manager = new THREE.LoadingManager();
 const textureLoader = new THREE.TextureLoader(manager);

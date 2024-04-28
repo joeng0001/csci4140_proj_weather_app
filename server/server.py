@@ -62,8 +62,8 @@ def get_wind_data():
 @app.route('/data/cloud')
 def get_cloud():
     data = read_file('./data/cloud/2023.csv')
-    # for item in data:
-    #     item['Year'] = item.pop('﻿Year')
+    for item in data:
+        item['年/Year'] = item.pop('﻿年/Year')
     return data
 
 if __name__ == '__main__':

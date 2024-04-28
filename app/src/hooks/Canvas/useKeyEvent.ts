@@ -1,5 +1,6 @@
 import { onMounted, onBeforeUnmount } from 'vue';
 import * as THREE from "three"
+import emitter from '@/helper/emitter';
 type KeyState = {
   [key: string]: boolean;
 };
@@ -31,6 +32,7 @@ export default function(){
             direction.normalize();
             direction.multiplyScalar(moveSpeed);
             model.position.add(direction);
+            emitter.emit('move',model.position)
             animation.play()
         }else{
             animation.stop()
@@ -38,8 +40,8 @@ export default function(){
         if (key['a'] || key['d']){
             rotation.multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, key['a']?1:-1, 0), rotationSpeed));
             model.setRotationFromQuaternion(rotation);
-        }
-        
+            emitter.emit('move',model.position)
+        } 
     }
 
     onMounted(() => {

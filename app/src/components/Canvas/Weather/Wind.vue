@@ -27,7 +27,6 @@ WeatherStore.Wind.forEach(wind => {
     const { actions } = useAnimations(animations, m)
     const currentAction = actions['rotation|Action']
     currentAction.play()
-    //get value by date
     const target = wind.data.find(obj => obj.year == date.year && obj.month == date.month && obj.day == date.day)
     currentAction.timeScale = target ? parseInt(target.value) : 0
     modelList.push({

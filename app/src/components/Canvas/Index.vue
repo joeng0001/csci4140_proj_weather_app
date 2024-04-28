@@ -21,14 +21,12 @@
 
     </TresCanvas>
 
-    <!-- <Humidity :v-model.value="1"/> -->
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { TresCanvas, useRenderLoop, useLoader, extend } from '@tresjs/core';
 import { OrbitControls, useAnimations } from '@tresjs/cientos';
-//import Humidity from '@/components/Canvas/Humidity.vue'
 import * as THREE from "three"
 import map from "@/assets/HKMap.png"
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
@@ -39,6 +37,7 @@ import Humidity from "@/components/Canvas/Weather/Humidity.vue"
 import UVRay from "@/components/Canvas/Weather/UVRay.vue"
 import Wind from "@/components/Canvas/Weather/Wind.vue"
 import Cloud from "@/components/Canvas/Weather/Cloud.vue"
+import emitter from '@/helper/emitter';
 
 
 const components = [
@@ -76,6 +75,10 @@ onLoop(({ delta, elapsed }) => {
     }
 });
 extend({ OrbitControls })
+
+emitter.on('date', (newD) => {
+    console.log("detect date change", newD)
+})
 
 
 // Function to handle the click event

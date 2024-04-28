@@ -2,8 +2,8 @@
     <div>humidity</div>
 </template>
 <script setup lang="ts">
-import { useWeatherStore } from '@/store/weather'
-import { storeToRefs } from 'pinia'
+//import { useWeatherStore } from '@/store/weather'
+//import { storeToRefs } from 'pinia'
 
 
 
@@ -15,7 +15,7 @@ import { storeToRefs } from 'pinia'
 //$attrs // pass from parent but not accept from childs props
 // const { a } = defineProps(['a'])
 //const name=defineModel('name') //v-model:name= model in parent
-const WeatherStore = useWeatherStore()
+// const WeatherStore = useWeatherStore()
 // WeatherStore.$patch({ //update multiple at once
 //     level: 1,
 // })

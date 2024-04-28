@@ -1,5 +1,5 @@
 <template>
-    <primitive :object="model" :scale="1" :position="[25, 12, 0]" />
+    <primitive :object="model" :scale="1" :position="[0, 25, 0]" />
     <TresDirectionalLight :position="[0, 25, 0]" />
 </template>
 

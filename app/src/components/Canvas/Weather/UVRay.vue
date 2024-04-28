@@ -1,5 +1,6 @@
 <template>
-    <!-- <TresPointLight :position="[0, 5, 0]" :color="0xff0000" :power="100"></TresPointLight> -->
+    <TresDirectionalLight :position="[0, 10, 0]" :color="0xff4019" :power="1000">
+    </TresDirectionalLight>
 </template>
 
 <script setup lang="ts">

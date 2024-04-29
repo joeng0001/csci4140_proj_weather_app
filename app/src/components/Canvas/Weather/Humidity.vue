@@ -1,5 +1,5 @@
 <template>
-    <TresFog :color="0xffffff" :far="far" :near="0"></TresFog>
+    <TresFog :color="0xffffff" :far="far" :near="0" name="Humidity"></TresFog>
 </template>
 
 <script setup lang="ts">

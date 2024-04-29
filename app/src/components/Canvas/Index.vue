@@ -13,8 +13,9 @@
             <TresPerspectiveCamera ref="cameraRef" :position="[0, 7, 2]" :fov="45" :aspect="1" :near="0.1" :far="300" />
         </TresGroup>
 
+
         <Suspense v-for="(comp, i) in components" :key="i">
-            <component :is="comp" />
+            <component :is="comp.comp" v-if="comp.show" />
         </Suspense>
         <!-- <template v-slot:name="params_from_slot"></template> -->
         <!-- <Humidity :v-model.value="a" /> -->
@@ -24,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, shallowReactive, shallowRef } from 'vue';
 import { TresCanvas, useRenderLoop, useLoader, extend } from '@tresjs/core';
 import { OrbitControls, useAnimations } from '@tresjs/cientos';
 import * as THREE from "three"
@@ -39,15 +40,16 @@ import Wind from "@/components/Canvas/Weather/Wind.vue"
 import Cloud from "@/components/Canvas/Weather/Cloud.vue"
 import emitter from '@/helper/emitter';
 
-
-const components = [
-    RainFall,
-    Sun,
-    Humidity,
-    UVRay,
-    Wind,
-    Cloud
+const defaultComponents = [
+    { label: 'Rain Fall', comp: RainFall, show: true },
+    { label: 'Sun Light', comp: Sun, show: true },
+    { label: 'Humidity', comp: Humidity, show: true },
+    { label: 'UV Ray', comp: UVRay, show: true },
+    { label: 'Wind', comp: Wind, show: true },
+    { label: 'Cloud', comp: Cloud, show: true },
 ]
+
+const components = shallowRef(defaultComponents)
 
 const manager = new THREE.LoadingManager();
 const textureLoader = new THREE.TextureLoader(manager);
@@ -62,6 +64,8 @@ currentAction.play()
 const modelRef = ref<THREE.Object3D | null>(null);
 const cameraRef = ref<THREE.PerspectiveCamera | null>(null);
 const boxRef = ref<THREE.Object3D | null>(null);
+const sceneRef = ref<THREE.Scene | null>(null);
+
 
 const { onLoop } = useRenderLoop();
 const { keyListener } = useKeyboardEventListener()
@@ -76,9 +80,31 @@ onLoop(({ delta, elapsed }) => {
 });
 extend({ OrbitControls })
 
-emitter.on('date', (newD) => {
+emitter.on('panel:weather', (newW: Array<String> | any) => {
+    console.log("detect weather change", newW)
+    let newArr = [...defaultComponents]
+    newArr.forEach(com => {
+        if (!newW.includes(com.label)) {
+            com.show = false
+            const scene = sceneRef.value.context.scene.value
+            while (scene.getObjectByName(com.label)) {
+                scene.remove(scene.getObjectByName(com.label))
+            }
+        } else {
+            com.show = true
+        }
+    })
+    components.value = newArr
+})
+
+emitter.on('panel:date', (newD) => {
     console.log("detect date change", newD)
 })
+
+emitter.on('panel:location', (newL) => {
+    console.log("detect location change", newL)
+})
+
 
 
 // Function to handle the click event

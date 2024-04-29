@@ -1,12 +1,13 @@
 <template>
-    <TresMesh v-for="(rain, i) in rains" :key="i" :position="[rain.position[0], rain.position[1], rain.position[2]]">
+    <TresMesh v-for="(rain, i) in rains" :key="i" :position="[rain.position[0], rain.position[1], rain.position[2]]"
+        name="Rain Fall">
         <TresBoxGeometry :args="[0.01, 0.3, 0.01]" />
         <TresMeshBasicMaterial color="grey" :transparent="true" :opacity="0.5" />
     </TresMesh>
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, shallowRef } from 'vue'
+import { onBeforeUnmount, ref, shallowRef } from 'vue'
 import { useWeatherStore } from '@/store/weather';
 import { location } from '@/constant';
 

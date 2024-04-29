@@ -1,19 +1,16 @@
 <template>
-    <VaButtonToggle v-model="model" gradient :options="options" @update:modelValue="emit('update', model)"
-        color="success" />
+    <VaSelect v-model="model" placeholder="Go To" color="#990099" :options="options"
+        @update:modelValue="emit('update', model)" />
 </template>
 
 <script setup lang="ts">
-import { watch, ref } from 'vue'
+import { ref } from 'vue'
+import { location } from '@/constant';
 
-const options = [
-    { label: "Kowloon", value: "Kowloon" },
-    { label: "New Territories", value: "New Territories" },
-    { label: "Hong Kong Island", value: "Hong Kong Island" }]
-
+const options = Object.keys(location)
 const emit = defineEmits(['update'])
 const props = defineProps(['location'])
 
-const model = ref(props.location)
+const model = ref(options.includes(props.location) ? props.location : options[0])
 
 </script>

@@ -8,7 +8,7 @@ export default function useDateTime(date:Date){
         date
     })
     watch(() => DateTimeOptionObj.date, (newV:Date) => {
-        emitter.emit('date',{year: newV.getFullYear(), month:newV.getMonth()+1, day: newV.getDay()})
+        emitter.emit('panel:date',{year: newV.getFullYear(), month:newV.getMonth()+1, day: newV.getDay()})
     })
     return {DateTimeOptionObj}
 }

@@ -35,7 +35,7 @@
 <script setup lang="ts">
 // weather
 import useWeatherOptionCollapses from "@/hooks/Panel/Weather"
-const { WeatherOptionCollapses } = useWeatherOptionCollapses(["Humidity", "Rain Fall", "Sun Light", "UV Ray", "Wind"])
+const { WeatherOptionCollapses } = useWeatherOptionCollapses(["Humidity", "Rain Fall", "Sun Light", "UV Ray", "Wind", "Cloud"])
 
 import useDateTime from "@/hooks/Panel/Date"
 const { DateTimeOptionObj } = useDateTime(new Date('2023-01-01'))

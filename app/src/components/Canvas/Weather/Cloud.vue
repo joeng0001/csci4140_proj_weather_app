@@ -1,13 +1,14 @@
 <template>
     <primitive :object="model.clone()" :scale="0.5"
-        :position="[cloud.position[0], cloud.position[1], cloud.position[2]]" v-for="(cloud, i) in clouds" :keys="i" />
+        :position="[cloud.position[0], cloud.position[1], cloud.position[2]]" v-for="(cloud, i) in clouds" :keys="i"
+        name="Cloud" />
 </template>
 
 <script setup lang="ts">
 import { useLoader } from '@tresjs/core';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
 import { useWeatherStore } from '@/store/weather';
-import { shallowRef } from 'vue';
+import { onBeforeUnmount, shallowRef } from 'vue';
 
 const Url = new URL('@/assets/cloud.glb', import.meta.url)
 const { scene: model } = await useLoader(GLTFLoader, Url.href)
@@ -29,7 +30,7 @@ for (let i = 0; i < value; i++) {
     })
 }
 
-setInterval(() => {
+const interval = setInterval(() => {
     let newArr = [...clouds.value]
     newArr.forEach(cloud => {
         cloud.position[1] += cloud.up ? cloud.velocity : -1 * cloud.velocity
@@ -39,6 +40,9 @@ setInterval(() => {
     clouds.value = newArr
 }, 10)
 
+onBeforeUnmount(() => {
+    if (interval) clearInterval(interval)
+})
 
 interface cloudObj {
     position: Array<Number>,

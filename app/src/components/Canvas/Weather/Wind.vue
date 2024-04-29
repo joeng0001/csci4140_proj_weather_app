@@ -1,6 +1,6 @@
 <template>
     <primitive :object="model.model" :scale="0.03" :position="model.position" modelList v-for="model in modelList"
-        :key="model" />
+        :key="model" name="Wind" />
 </template>
 <script setup lang="ts">
 

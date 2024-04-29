@@ -17,11 +17,12 @@ emitter.on('panel:date', (newD: any) => {
     date = newD
 })
 
+findClosestLoc({ x: 0, z: 0 })
 emitter.on('move', (pos) => {
     const val = findClosestLoc(pos)
     far.value = val / 3
 })
-const findClosestLoc = (newPos: any) => {
+function findClosestLoc(newPos: any) {
     let min = 999, val = 0
     WeatherStore.Humidity.forEach(humidity => {
         const tar_pos = location[humidity.place]
@@ -29,7 +30,8 @@ const findClosestLoc = (newPos: any) => {
         if (distance < min) {
             min = distance
             const target = humidity.data.find(obj => obj.year == date.year && obj.month == date.month && obj.day == date.day)
-            val = target ? parseInt(target.value) : 0
+            val = target ? parseInt(target.value) : 100
+            console.log(humidity.place, target, val)
         }
     })
     return val

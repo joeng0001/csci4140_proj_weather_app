@@ -113,7 +113,9 @@ emitter.on('panel:date', (newD: Object | any) => {
 emitter.on('panel:location', (newL: String | any) => {
     if (modelRef.value) {
         modelRef.value.position.set(location[newL][0], 0, location[newL][1])
+        emitter.emit('move', { x: location[newL][0], y: 0, z: location[newL][1] })
     }
+
 })
 
 // function onClick(event: MouseEvent) {

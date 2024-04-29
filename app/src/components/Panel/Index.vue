@@ -30,6 +30,20 @@
             </VaCollapse>
         </VaAccordion>
     </div>
+    <div class="right-mid">
+        <VaSidebar hoverable>
+            <VaSidebarItem active>
+                <VaSidebarItemContent>
+                    <VaIcon name="room" />
+                    <VaSidebarItemTitle>
+                        <div>{{ `${data.location} (${data.position.x}, ${data.position.z})` }}</div>
+                        <div>{{ `${data.date.year}/${data.date.month}/${data.date.day}` }}</div>
+                        <div>{{ data.weather.cloud }}</div>
+                    </VaSidebarItemTitle>
+                </VaSidebarItemContent>
+            </VaSidebarItem>
+        </VaSidebar>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -43,8 +57,8 @@ const { DateTimeOptionObj } = useDateTime(new Date('2023-01-01'))
 import useLocationOptionCollapses from "@/hooks/Panel/Location"
 const { LocationOptionCollapses } = useLocationOptionCollapses()
 
-
-
+import useSidebar from "@/hooks/Panel/Sidebar";
+const data = useSidebar()
 </script>
 <style scoped>
 .wrapper {
@@ -56,5 +70,11 @@ const { LocationOptionCollapses } = useLocationOptionCollapses()
 
 .bg {
     background: rgba(220, 220, 220, 0.9);
+}
+
+.right-mid {
+    position: absolute;
+    right: 0;
+    top: 30%;
 }
 </style>

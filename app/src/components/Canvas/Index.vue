@@ -39,6 +39,7 @@ import UVRay from "@/components/Canvas/Weather/UVRay.vue"
 import Wind from "@/components/Canvas/Weather/Wind.vue"
 import Cloud from "@/components/Canvas/Weather/Cloud.vue"
 import emitter from '@/helper/emitter';
+import { location } from '@/constant';
 
 const defaultComponents = [
     { label: 'Rain Fall', comp: RainFall, show: true },
@@ -90,6 +91,9 @@ emitter.on('panel:weather', (newW: Array<String> | any) => {
             while (scene?.getObjectByName(com.label)) {
                 scene.remove(scene.getObjectByName(com.label))
             }
+            if (com.label == "Humidity") {
+                scene.fog = null
+            }
         } else {
             com.show = true
         }
@@ -97,7 +101,7 @@ emitter.on('panel:weather', (newW: Array<String> | any) => {
     components.value = newArr
 })
 
-emitter.on('panel:date', (newD: any) => {
+emitter.on('panel:date', (newD: Object | any) => {
     const scene = sceneRef?.value?.context?.scene?.value
     defaultComponents.forEach(com => {
         while (scene?.getObjectByName(com.label)) {
@@ -106,13 +110,14 @@ emitter.on('panel:date', (newD: any) => {
     })
 })
 
-
-emitter.on('panel:location', (newL) => {
-    console.log("detect location change", newL)
+emitter.on('panel:location', (newL: String | any) => {
+    if (modelRef.value) {
+        modelRef.value.position.set(location[newL][0], 0, location[newL][1])
+    }
 })
 
-function onClick(event: MouseEvent) {
-    console.log("click", event.point)
-}
+// function onClick(event: MouseEvent) {
+//     console.log("click", event.point)
+// }
 //provide('test',1) //pass to all descendent
 </script>

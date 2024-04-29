@@ -29,14 +29,36 @@ function initRains(date: any = { year: "2023", month: "1", day: "1" }) {
         const target = rainfall.data.find(obj => obj.year == date.year && obj.month == date.month && obj.day == date.day)
         const value = (target?.value ? (parseInt(target.value) > 50 ? 50 : parseInt(target.value)) : 0)
         for (let i = 0; i < value; i++) {
+            for (let j = loc[0] - 5; j < loc[0] + 5; j += 1.5) {
+                for (let k = loc[0] - 5; k < loc[0] + 5; k += 1.5) {
+                    let min = 999, estimate_loc = ""
+                    Object.keys(location).forEach((loc_key: string) => {
+                        let distance = Math.sqrt((j - location[loc_key][0]) ** 2 + (k - location[loc_key][1]) ** 2)
+                        if (distance < min) {
+                            min = distance
+                            estimate_loc = loc_key
+                        }
+                    })
+                    if (estimate_loc == rainfall.place) {
+                        newArr.push({
+                            position: [j, 5, k],
+                            velocity: Math.random() * 0.5 + 0.5
+                        })
+                    }
+                }
+            }
+
             newArr.push({
-                position: [loc[0] + Math.random() * 4 - 1, 5, loc[0] + Math.random() * 4 - 1],
+                position: [loc[0] + Math.random() * 4 - 1, 5, loc[1] + Math.random() * 4 - 1],
                 velocity: Math.random() * 0.5 + 0.5
             })
         }
     })
     rains.value = newArr
 }
+
+
+
 
 const interval = initInterval()
 function initInterval() {

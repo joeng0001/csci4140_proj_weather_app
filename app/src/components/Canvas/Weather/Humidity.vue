@@ -26,12 +26,11 @@ function findClosestLoc(newPos: any) {
     let min = 999, val = 0
     WeatherStore.Humidity.forEach(humidity => {
         const tar_pos = location[humidity.place]
-        let distance = Math.sqrt((tar_pos[0] - newPos.x) ** 2 + (tar_pos[1] - newPos.z))
+        let distance = Math.sqrt((tar_pos[0] - newPos.x) ** 2 + (tar_pos[1] - newPos.z) ** 2)
         if (distance < min) {
             min = distance
             const target = humidity.data.find(obj => obj.year == date.year && obj.month == date.month && obj.day == date.day)
             val = target ? parseInt(target.value) : 100
-            console.log(humidity.place, target, val)
         }
     })
     return val

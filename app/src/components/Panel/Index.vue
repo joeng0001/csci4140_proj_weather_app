@@ -31,14 +31,30 @@
         </VaAccordion>
     </div>
     <div class="right-mid">
-        <VaSidebar hoverable>
-            <VaSidebarItem active>
+        <VaSidebar width="22rem" :color="'#d3d3d3'">
+            <VaSidebarItem>
                 <VaSidebarItemContent>
                     <VaIcon name="room" />
                     <VaSidebarItemTitle>
-                        <div>{{ `${data.location} (${data.position.x}, ${data.position.z})` }}</div>
-                        <div>{{ `${data.date.year}/${data.date.month}/${data.date.day}` }}</div>
-                        <div>{{ data.weather.cloud }}</div>
+                        <div class="d-flex">
+                            <div>
+                                <h2>Location:</h2>
+                                <h2>Date:</h2>
+                                <h2>Cloud:</h2>
+                                <h2>Humidity:</h2>
+                                <h2>Rainfall:</h2>
+                                <h2>Wind:</h2>
+                            </div>
+                            <div>&nbsp;&nbsp;</div>
+                            <div>
+                                <h2>{{ `${data.location} (${data.position.x}, ${data.position.z})` }}</h2>
+                                <h2>{{ `${data.date.year}/${data.date.month}/${data.date.day}` }}</h2>
+                                <h2>{{ `${data.weather.cloud}` }}</h2>
+                                <h2>{{ `${data.weather.humidity}` }}</h2>
+                                <h2>{{ `${data.weather.rainfall}` }}</h2>
+                                <h2>{{ `${data.weather.wind}` }}</h2>
+                            </div>
+                        </div>
                     </VaSidebarItemTitle>
                 </VaSidebarItemContent>
             </VaSidebarItem>
@@ -47,6 +63,7 @@
 </template>
 
 <script setup lang="ts">
+
 // weather
 import useWeatherOptionCollapses from "@/hooks/Panel/Weather"
 const { WeatherOptionCollapses } = useWeatherOptionCollapses(["Humidity", "Rain Fall", "Sun Light", "UV Ray", "Wind", "Cloud"])
@@ -76,5 +93,9 @@ const data = useSidebar()
     position: absolute;
     right: 0;
     top: 30%;
+}
+
+h2 {
+    text-align: left;
 }
 </style>

@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const props=defineProps(['date'])
+const props = defineProps(['date'])
 const model = ref(props.date)
 const emit = defineEmits(['update'])
 

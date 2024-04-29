@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, shallowReactive, shallowRef } from 'vue';
+import { ref, shallowReactive, shallowRef, reactive } from 'vue';
 import { TresCanvas, useRenderLoop, useLoader, extend } from '@tresjs/core';
 import { OrbitControls, useAnimations } from '@tresjs/cientos';
 import * as THREE from "three"
@@ -66,9 +66,10 @@ const cameraRef = ref<THREE.PerspectiveCamera | null>(null);
 const boxRef = ref<THREE.Object3D | null>(null);
 const sceneRef = ref<THREE.Scene | null>(null);
 
-
 const { onLoop } = useRenderLoop();
 const { keyListener } = useKeyboardEventListener()
+
+let date = shallowReactive({ year: "2023", month: "1", day: "1" })
 
 onLoop(({ delta, elapsed }) => {
     if (modelRef.value) {
@@ -81,13 +82,12 @@ onLoop(({ delta, elapsed }) => {
 extend({ OrbitControls })
 
 emitter.on('panel:weather', (newW: Array<String> | any) => {
-    console.log("detect weather change", newW)
+    const scene = sceneRef?.value?.context?.scene?.value
     let newArr = [...defaultComponents]
     newArr.forEach(com => {
         if (!newW.includes(com.label)) {
             com.show = false
-            const scene = sceneRef.value.context.scene.value
-            while (scene.getObjectByName(com.label)) {
+            while (scene?.getObjectByName(com.label)) {
                 scene.remove(scene.getObjectByName(com.label))
             }
         } else {
@@ -97,17 +97,20 @@ emitter.on('panel:weather', (newW: Array<String> | any) => {
     components.value = newArr
 })
 
-emitter.on('panel:date', (newD) => {
-    console.log("detect date change", newD)
+emitter.on('panel:date', (newD: any) => {
+    const scene = sceneRef?.value?.context?.scene?.value
+    defaultComponents.forEach(com => {
+        while (scene?.getObjectByName(com.label)) {
+            scene.remove(scene.getObjectByName(com.label))
+        }
+    })
 })
+
 
 emitter.on('panel:location', (newL) => {
     console.log("detect location change", newL)
 })
 
-
-
-// Function to handle the click event
 function onClick(event: MouseEvent) {
     console.log("click", event.point)
 }

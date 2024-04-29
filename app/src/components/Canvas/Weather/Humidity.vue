@@ -10,9 +10,12 @@ import { location } from '@/constant';
 import { ref } from 'vue'
 
 const WeatherStore = useWeatherStore()
-const date = { year: "2023", month: "1", day: "1" }
-
 const far = ref(30)
+let date = { year: "2023", month: "1", day: "1" }
+
+emitter.on('panel:date', (newD: any) => {
+    date = newD
+})
 
 emitter.on('move', (pos) => {
     const val = findClosestLoc(pos)

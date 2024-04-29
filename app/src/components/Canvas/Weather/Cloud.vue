@@ -8,27 +8,36 @@
 import { useLoader } from '@tresjs/core';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
 import { useWeatherStore } from '@/store/weather';
-import { onBeforeUnmount, shallowRef } from 'vue';
+import { onBeforeUnmount, shallowRef, watch } from 'vue';
+import emitter from '@/helper/emitter';
 
 const Url = new URL('@/assets/cloud.glb', import.meta.url)
 const { scene: model } = await useLoader(GLTFLoader, Url.href)
 
 const WeatherStore = useWeatherStore()
 
-const date = { year: "2023", month: "1", day: "1" }
-
 const clouds: Array<cloudObj> | any = shallowRef([])
-const target = WeatherStore.Cloud.find(obj => obj.year == date.year && obj.month == date.month && obj.day == date.day)
-const value = target?.value ? parseInt(target.value) : 0
-for (let i = 0; i < value; i++) {
-    clouds.value.push({
-        position: [
-            Math.random() * 50 - 25, 5, Math.random() * 50 - 25
-        ],
-        up: true,
-        velocity: Math.random() * 0.01,
-    })
+
+emitter.on('panel:date', (newD: Object | any) => {
+    initClouds(newD)
+})
+
+initClouds()
+function initClouds(date: any = { year: "2023", month: "1", day: "1" }) {
+    const target = WeatherStore.Cloud.find(obj => obj.year == date.year && obj.month == date.month && obj.day == date.day)
+    const value = target?.value ? parseInt(target.value) : 0
+    for (let i = 0; i < value; i++) {
+        clouds.value.push({
+            position: [
+                Math.random() * 50 - 25, 5, Math.random() * 50 - 25
+            ],
+            up: true,
+            velocity: Math.random() * 0.01,
+        })
+    }
 }
+
+
 
 const interval = setInterval(() => {
     let newArr = [...clouds.value]

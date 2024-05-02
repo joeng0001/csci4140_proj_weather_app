@@ -6,7 +6,7 @@
         <TresAxesHelper :args="[100]" />
         <TresMesh ref="boxRef" :scale="5" :rotation-x="-1 * Math.PI / 2" @click="onClick">
             <TresPlaneGeometry :args="[10, 10, 1, 1]" />
-            <TresMeshBasicMaterial :map="texture" />
+            <TresMeshStandardMaterial :map="texture" />
         </TresMesh>
         <TresGroup ref="modelRef" :position="[0, 0, 2]">
             <primitive :object="model" :scale="0.0001" />

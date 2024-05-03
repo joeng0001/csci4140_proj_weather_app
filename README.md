@@ -11,6 +11,10 @@ Please<br>
    <img src="./README_resource/chrome.png" /><br>
    <img src="./README_resource/edge.png" /><br>
 
+2. If run in localhost/docker, please update axios baseURL
+   currently it's using Render URL for deployment on Render <br>
+   /app/src/help/http.ts
+
 # Run the Application
 
 1. cd server

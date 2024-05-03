@@ -21,7 +21,7 @@ let modelList = shallowRef(<Array<modelItf>>[])
 
 watch(() => DateStore.date, (newD) => {
     initModelList(newD)
-})
+}, { immediate: true })
 
 function initModelList(date: any = { year: "2023", month: "1", day: "1" }) {
     let newArr: any = []

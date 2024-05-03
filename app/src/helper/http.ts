@@ -1,6 +1,6 @@
 import axios from 'axios'
 const Http = axios.create({
-  baseURL: "http://localhost:8088", 
+  baseURL: "http://127.0.0.1:8088", 
   headers: {
     "Content-Type": "application/x-www-form-urlencoded",
   },

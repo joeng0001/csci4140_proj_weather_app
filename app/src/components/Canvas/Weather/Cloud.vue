@@ -8,21 +8,24 @@
 import { useLoader } from '@tresjs/core';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
 import { useWeatherStore } from '@/store/weather';
+import { useDateStore } from '@/store/date';
 import { onBeforeUnmount, shallowRef, watch } from 'vue';
-import emitter from '@/helper/emitter';
 
 const Url = new URL('@/assets/cloud.glb', import.meta.url)
 const { scene: model } = await useLoader(GLTFLoader, Url.href)
 
 const WeatherStore = useWeatherStore()
+const DateStore = useDateStore()
+
 
 const clouds: Array<cloudObj> | any = shallowRef([])
 
-emitter.on('panel:date', (newD: Object | any) => {
+watch(() => DateStore.date, (newD) => {
     initClouds(newD)
+}, {
+    immediate: true
 })
 
-initClouds()
 function initClouds(date: any = { year: "2023", month: "1", day: "1" }) {
     const target = WeatherStore.Cloud.find(obj => obj.year == date.year && obj.month == date.month && obj.day == date.day)
     const value = target?.value ? parseInt(target.value) : 0
@@ -36,8 +39,6 @@ function initClouds(date: any = { year: "2023", month: "1", day: "1" }) {
         })
     }
 }
-
-
 
 const interval = setInterval(() => {
     let newArr = [...clouds.value]

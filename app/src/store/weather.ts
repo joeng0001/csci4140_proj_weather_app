@@ -87,7 +87,7 @@ function humidity_Rainfall_Wind_Cloud_Map(obj:HumidityData|RainfallData|WindData
 }
 
 function UVRayMap(obj:UVRayData){
-    delete Object.assign(obj, {['Year']: obj["Year"] })["Year"];
+    delete Object.assign(obj, {['year']: obj["Year"] })["Year"];
     delete Object.assign(obj, {['month']: obj["Month"] })["Month"];
     delete Object.assign(obj, {['day']: obj["Day"] })["Day"];
     delete Object.assign(obj, {['value']: obj["Value"] })["Value"];

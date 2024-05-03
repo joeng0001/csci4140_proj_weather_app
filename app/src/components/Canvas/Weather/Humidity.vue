@@ -5,17 +5,20 @@
 <script setup lang="ts">
 //far=30
 import { useWeatherStore } from '@/store/weather'
+import { useDateStore } from '@/store/date';
 import emitter from '@/helper/emitter';
 import { location } from '@/constant';
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 const WeatherStore = useWeatherStore()
+const DateStore = useDateStore()
 const far = ref(30)
-let date = { year: "2023", month: "1", day: "1" }
+let date = { year: 2023, month: 1, day: 1 }
 
-emitter.on('panel:date', (newD: any) => {
+watch(() => DateStore.date, (newD) => {
     date = newD
 })
+
 
 findClosestLoc({ x: 0, z: 0 })
 emitter.on('move', (pos) => {

@@ -3,8 +3,8 @@
     <TresCanvas clear-color="#FFFFFF" shadows alpha window-size ref="sceneRef">
         <OrbitControls />
         <!-- <TresAmbientLight /> -->
-        <TresAxesHelper :args="[100]" />
-        <TresMesh ref="boxRef" :scale="5" :rotation-x="-1 * Math.PI / 2" @click="onClick">
+        <!-- <TresAxesHelper :args="[100]" /> -->
+        <TresMesh ref="boxRef" :scale="5" :rotation-x="-1 * Math.PI / 2">
             <TresPlaneGeometry :args="[10, 10, 1, 1]" />
             <TresMeshStandardMaterial :map="texture" />
         </TresMesh>
@@ -70,8 +70,6 @@ const sceneRef = ref<THREE.Scene | null>(null);
 const { onLoop } = useRenderLoop();
 const { keyListener } = useKeyboardEventListener()
 
-let date = shallowReactive({ year: "2023", month: "1", day: "1" })
-
 onLoop(({ delta, elapsed }) => {
     if (modelRef.value) {
         keyListener(modelRef.value, currentAction)
@@ -101,7 +99,7 @@ emitter.on('panel:weather', (newW: Array<String> | any) => {
     components.value = newArr
 })
 
-emitter.on('panel:date', (newD: Object | any) => {
+emitter.on('panel:date', () => {
     const scene = sceneRef?.value?.context?.scene?.value
     defaultComponents.forEach(com => {
         while (scene?.getObjectByName(com.label)) {
@@ -118,8 +116,6 @@ emitter.on('panel:location', (newL: String | any) => {
 
 })
 
-// function onClick(event: MouseEvent) {
-//     console.log("click", event.point)
-// }
+
 //provide('test',1) //pass to all descendent
 </script>

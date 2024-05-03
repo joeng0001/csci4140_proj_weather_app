@@ -44,6 +44,7 @@
                                 <h2>Humidity:</h2>
                                 <h2>Rainfall:</h2>
                                 <h2>Wind:</h2>
+                                <h2>UV Ray:</h2>
                             </div>
                             <div>&nbsp;&nbsp;</div>
                             <div>
@@ -53,6 +54,7 @@
                                 <h2>{{ `${data.weather.humidity}` }}</h2>
                                 <h2>{{ `${data.weather.rainfall}` }}</h2>
                                 <h2>{{ `${data.weather.wind}` }}</h2>
+                                <h2>{{ `${data.weather.uvRay}` }}</h2>
                             </div>
                         </div>
                     </VaSidebarItemTitle>

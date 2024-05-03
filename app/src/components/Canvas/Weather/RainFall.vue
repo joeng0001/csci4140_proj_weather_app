@@ -9,18 +9,19 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref, shallowReactive, shallowRef, watch } from 'vue'
 import { useWeatherStore } from '@/store/weather';
+import { useDateStore } from '@/store/date';
 import { location } from '@/constant';
-import emitter from '@/helper/emitter';
 
 const WeatherStore = useWeatherStore()
-
+const DateStore = useDateStore()
 let rains: Array<rainObj> | any = shallowRef([])
 
-emitter.on('panel:date', (newD: Object | any) => {
+watch(() => DateStore.date, (newD) => {
     initRains(newD)
+}, {
+    immediate: true
 })
 
-initRains()
 function initRains(date: any = { year: "2023", month: "1", day: "1" }) {
     rains.value = []
     const newArr: any = []

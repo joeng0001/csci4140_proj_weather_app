@@ -9,20 +9,20 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader'
 import { useAnimations } from '@tresjs/cientos';
 import { location } from '@/constant';
 import { useWeatherStore } from '@/store/weather'
-import emitter from '@/helper/emitter';
-import { shallowRef } from 'vue';
+import { useDateStore } from '@/store/date';
+import { shallowRef, watch } from 'vue';
 
 const Url = new URL('@/assets/turbine.glb', import.meta.url)
 const { scene: model, animations } = await useLoader(GLTFLoader, Url.href)
 const WeatherStore = useWeatherStore()
+const DateStore = useDateStore()
 
 let modelList = shallowRef(<Array<modelItf>>[])
 
-emitter.on('panel:date', (newD: any) => {
+watch(() => DateStore.date, (newD) => {
     initModelList(newD)
 })
 
-initModelList()
 function initModelList(date: any = { year: "2023", month: "1", day: "1" }) {
     let newArr: any = []
     WeatherStore.Wind.forEach(wind => {
@@ -40,8 +40,6 @@ function initModelList(date: any = { year: "2023", month: "1", day: "1" }) {
     })
     modelList.value = newArr
 }
-
-
 
 interface modelItf {
     "model": String,

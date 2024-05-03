@@ -31,7 +31,8 @@ export default function useSidebar(){
                 cloud:'0' ,
                 humidity:'0',
                 rainfall:'0',
-                wind:'0'
+                wind:'0',
+                uvRay:'0'
             }
         }
     )
@@ -41,6 +42,7 @@ export default function useSidebar(){
     update_humidity()
     update_rainfall()
     update_wind()
+    update_uvRay()
     // update location,x,y,z
     emitter.on('move',(newP:newP|any)=>{
         let min_dis=999,min_loc=""
@@ -64,12 +66,12 @@ export default function useSidebar(){
 
         const target_cloud_data = WeatherStore.Cloud.find(obj => obj.year == newD.year && obj.month == newD.month && obj.day == newD.day)
         data.weather.cloud=target_cloud_data?target_cloud_data.value:'0'
-        console.log("setting cloud",target_cloud_data)
 
         update_cloud()
         update_humidity()
         update_rainfall()
         update_wind()
+        update_uvRay()
     })
 
 
@@ -102,6 +104,10 @@ export default function useSidebar(){
         })
         const target_wind_data=target_wind?.data.find(obj => obj.year == data.date.year && obj.month == data.date.month && obj.day == data.date.day)
         data.weather.wind=target_wind_data?.value?target_wind_data.value:"no data"
+    }
+    function update_uvRay(){
+        const target_uvRay_data=WeatherStore.UVRay.find(obj => obj.year == data.date.year && obj.month == data.date.month && obj.day == data.date.day)
+        data.weather.uvRay=target_uvRay_data?.value?target_uvRay_data.value:"no data"
     }
 }
 

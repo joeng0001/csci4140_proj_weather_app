@@ -1,10 +1,10 @@
 import os
 import json
 import csv
-from flask import Flask, jsonify
+from flask import Flask
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='./dist')
 CORS(app, origins='*')
 
 def read_file(file_path):
@@ -65,6 +65,14 @@ def get_cloud():
     for item in data:
         item['年/Year'] = item.pop('﻿年/Year')
     return data
+
+@app.route('/')
+def index():
+  return app.send_static_file('index.html')
+
+@app.route('/<path:filename>')
+def send_static(filename):
+  return app.send_static_file(filename)
 
 if __name__ == '__main__':
     app.run(port=8088)

@@ -38,6 +38,14 @@ Please<br>
 1. docker-compose up --build
 2. access http://127.0.0.1:5173/
 
+# User Guide
+
+1. ['W','A','S','D'] for controlling model
+2. OrbitControl is enabled, hold the mouse left to move camera / use wheel to zoom in || zoom out
+3. Button ['Weather'] can select what animation to be display, default all
+4. Button ['Date'] enable date select on 2023, currently only 2023 weather data support
+5. Button ['Location'] enable location select, the model will directly move to the selected location
+
 # Folder struture
 
 - app (vue) <br>
@@ -69,5 +77,3 @@ Please<br>
   - data (all the weather data stored in csv)
   - dist (the production folder of vue, serve directly in flask)
   - server.py (server entry)
-
-# ['W','A','S','D'] for controlling model

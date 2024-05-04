@@ -65,3 +65,5 @@ Please<br>
   - data (all the weather data stored in csv)
   - dist (the production folder of vue, serve directly in flask)
   - server.py (server entry)
+
+# ['W','A','S','D'] for controlling model

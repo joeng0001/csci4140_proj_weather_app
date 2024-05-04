@@ -10,14 +10,14 @@ https://csci4140-proj-weather-app.onrender.com
 
 Please<br>
 
-1. Ensure your computer have GPU support and and turn it on browser<br>
+1. Ensure your computer have GPU support and turn it on browser<br>
 
    <img src="./README_resource/chrome.png" /><br>
    <img src="./README_resource/edge.png" /><br>
 
 2. If run in localhost/docker, please update axios baseURL
    currently it's using Render URL for deployment on Render <br>
-   /app/src/help/http.ts
+   /app/src/helper/http.ts
 
 # Run the Application
 
@@ -26,17 +26,17 @@ Please<br>
 3. python server.py
 4. access http://127.0.0.1:8088/
 
-### if run in docker
-
-1. docker-compose up --build
-2. access http://127.0.0.1:5173/
-
-# if updated /app folder
+### if updated /app folder
 
 1. cd app
 2. npm run build-only
 3. move the dist folder from /app to /server
-4. reboot the application
+4. reload the page
+
+# Docker
+
+1. docker-compose up --build
+2. access http://127.0.0.1:5173/
 
 # Folder struture
 

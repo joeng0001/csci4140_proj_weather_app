@@ -1,6 +1,6 @@
 <template>
-    <primitive :object="model" :scale="1" :position="[0, 30, 0]" />
-    <TresDirectionalLight :position="[0, 30, 0]" />
+    <primitive :object="model" :scale="1" :position="[0, 30, 0]" name="Sun Light" />
+    <TresDirectionalLight :position="[0, 30, 0]" name="Sun Light" />
 </template>
 
 <script setup lang="ts">
